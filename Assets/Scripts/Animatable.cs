@@ -31,4 +31,6 @@ public class Animatable : MonoBehaviour,IAnimatable
     {
         _animator.SetBool("IsFlying", true);
     }
+
+   
 }

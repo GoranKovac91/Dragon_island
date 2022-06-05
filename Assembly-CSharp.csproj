@@ -54,11 +54,25 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="Assets\Scripts\IAnimatable.cs" />
+    <Compile Include="Assets\UnityAssets\PyroParticles\Prefab\Script\MeteorSwarmScript.cs" />
     <Compile Include="Assets\Scripts\CameraController.cs" />
     <Compile Include="Assets\Scripts\Animatable.cs" />
-    <Compile Include="Assets\Scripts\PlayerControls.cs" />
-    <Compile Include="Assets\Scripts\IFly.cs" />
     <Compile Include="Assets\Scripts\Flyable.cs" />
+    <Compile Include="Assets\UnityAssets\PyroParticles\Prefab\Script\FireCollisionForwardScript.cs" />
+    <Compile Include="Assets\Scripts\PlayerControls.cs" />
+    <Compile Include="Assets\UnityAssets\PyroParticles\Prefab\Script\SingleLineAttribute.cs" />
+    <Compile Include="Assets\UnityAssets\PyroParticles\Demo\DemoScript.cs" />
+    <Compile Include="Assets\UnityAssets\PyroParticles\Prefab\Script\FireBaseScript.cs" />
+    <Compile Include="Assets\UnityAssets\PyroParticles\Demo\DemoScriptEditor.cs" />
+    <Compile Include="Assets\UnityAssets\PyroParticles\Prefab\Script\FireProjectileScript.cs" />
+    <Compile Include="Assets\UnityAssets\PyroParticles\Prefab\Script\FireConstantBaseScript.cs" />
+    <Compile Include="Assets\Scripts\IFlyable.cs" />
+    <Compile Include="Assets\UnityAssets\PyroParticles\Prefab\Script\FireLightScript.cs" />
+    <Compile Include="Assets\Scripts\CreateFire.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\UnityAssets\PyroParticles\Prefab\Materials\AdditiveTintable.shader" />
+    <None Include="Assets\UnityAssets\PyroParticles\Readme.txt" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="UnityEngine">

@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
+using System;
 [RequireComponent(typeof(CharacterController))]
 public class PlayerControls : MonoBehaviour
 {
@@ -11,19 +13,27 @@ public class PlayerControls : MonoBehaviour
     [SerializeField] private float _flyingForce;
     [SerializeField] public LayerMask GroundLayerMask;
     [SerializeField] public Transform GroundCheck;
+    [SerializeField] public Transform LandingCheck;
     [SerializeField] private Transform _cameraTransform;
     [SerializeField] private bool _isGrounded = false;
+    [SerializeField] private GameObject _flameThrowerInstance;
+    [SerializeField] private GameObject _flameThrowerPrefab;
+    [SerializeField] private Transform _shootPosition;
+    [SerializeField] public bool Fire { get; private set; }
+    public static event Action OnFire = delegate { };
     public IAnimatable animatable;
-    public IFly fly;
+    public IFlyable fly;
     private void Awake()
     {
         _characterController = GetComponent<CharacterController>();
         animatable = GetComponent<IAnimatable>();
-        fly = GetComponent<IFly>();
+        fly = GetComponent<IFlyable>();
+      
     }
     private void Update()
     {
         _isGrounded = Physics.Linecast(transform.position, GroundCheck.position, GroundLayerMask);
+       
 
         animatable.Idle();
         float horizontalMovement = Input.GetAxisRaw("Horizontal");
@@ -39,7 +49,7 @@ public class PlayerControls : MonoBehaviour
         
         if (Movement != Vector3.zero   )
         {
-            _player.transform.rotation = Quaternion.Slerp(_player.transform.rotation, Quaternion.LookRotation(Movement), Time.deltaTime * 5.0f);
+            _player.transform.rotation = Quaternion.Slerp(_player.transform.rotation, Quaternion.LookRotation(Movement), Time.deltaTime * 2.0f);
         }
        
         if (verticalMovement > Mathf.Epsilon || horizontalMovement > Mathf.Epsilon)
@@ -67,7 +77,14 @@ public class PlayerControls : MonoBehaviour
         {
             fly.Ascend();        
         }
-     
+
+        Fire = Input.GetMouseButtonDown(0);
+        if (Fire)
+        {
+            OnFire();
+
+        }
+        
         _characterController.Move(_velocity * Time.deltaTime);
 
     }
