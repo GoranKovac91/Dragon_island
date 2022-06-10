@@ -13,16 +13,14 @@ public class PlayerControls : MonoBehaviour
     [SerializeField] private float _flyingForce;
     [SerializeField] public LayerMask GroundLayerMask;
     [SerializeField] public Transform GroundCheck;
-    [SerializeField] public Transform LandingCheck;
     [SerializeField] private Transform _cameraTransform;
     [SerializeField] private bool _isGrounded = false;
-    [SerializeField] private GameObject _flameThrowerInstance;
-    [SerializeField] private GameObject _flameThrowerPrefab;
-    [SerializeField] private Transform _shootPosition;
     [SerializeField] public bool Fire { get; private set; }
+    [SerializeField] public bool ChooseFire { get; private set; }
     public static event Action OnFire = delegate { };
     public IAnimatable animatable;
     public IFlyable fly;
+   
     private void Awake()
     {
         _characterController = GetComponent<CharacterController>();
@@ -30,10 +28,10 @@ public class PlayerControls : MonoBehaviour
         fly = GetComponent<IFlyable>();
       
     }
+ 
     private void Update()
     {
-        _isGrounded = Physics.Linecast(transform.position, GroundCheck.position, GroundLayerMask);
-       
+        _isGrounded = Physics.Linecast(transform.position,GroundCheck.position, GroundLayerMask);
 
         animatable.Idle();
         float horizontalMovement = Input.GetAxisRaw("Horizontal");
@@ -47,9 +45,9 @@ public class PlayerControls : MonoBehaviour
 
         _characterController.Move(Movement * Time.deltaTime);
         
-        if (Movement != Vector3.zero   )
+        if (Movement != Vector3.zero )
         {
-            _player.transform.rotation = Quaternion.Slerp(_player.transform.rotation, Quaternion.LookRotation(Movement), Time.deltaTime * 2.0f);
+           _player.transform.rotation = Quaternion.Slerp(_player.transform.rotation, Quaternion.LookRotation(Movement), Time.deltaTime * 2.0f);
         }
        
         if (verticalMovement > Mathf.Epsilon || horizontalMovement > Mathf.Epsilon)
@@ -68,25 +66,23 @@ public class PlayerControls : MonoBehaviour
         if (_isGrounded == false && Movement!=Vector3.zero)
         {
             animatable.FlyForward();
+            fly.Fly();
         }
-        if (Input.mousePosition.y >= Screen.height-10 && _isGrounded == false)
-        {        
-            fly.Dive();          
-        }
-        if (Input.mousePosition.y <= 0.5 && _isGrounded == false)
-        {
-            fly.Ascend();        
-        }
-
+     
         Fire = Input.GetMouseButtonDown(0);
+       
         if (Fire)
         {
             OnFire();
-
         }
         
         _characterController.Move(_velocity * Time.deltaTime);
 
     }
-  
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = Color.red;
+        Gizmos.DrawLine(transform.position, GroundCheck.position);
+    }
+
 }

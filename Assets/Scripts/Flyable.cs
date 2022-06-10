@@ -2,27 +2,30 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Flyable : MonoBehaviour,IFlyable
+public class Flyable : MonoBehaviour, IFlyable
 {
-    public float XAngle => 45.0f;
+    public Vector2 lookInput { get; private set; }
 
-    public float YAngle => throw new System.NotImplementedException();
+    public Vector2 screenCenter { get; private set; }
 
-    public float ZAngle => throw new System.NotImplementedException();
-
-    public float smooth => 1.0f;
+    public Vector2 mouseDistance { get; private set; }
 
     [SerializeField] private GameObject _player;
-
-
-    public void Ascend()
+    private void Awake()
     {
-        _player.transform.rotation = Quaternion.Slerp(_player.transform.rotation, Quaternion.Euler(-XAngle, _player.transform.localEulerAngles.y, _player.transform.localEulerAngles.z), smooth * Time.deltaTime);
+        screenCenter = new Vector2(Screen.width*.5f,Screen.height*.5f);
+    
+    }
+    private void Update()
+    {
+        lookInput = new Vector2(Input.mousePosition.x, Input.mousePosition.y);
+        mouseDistance = new Vector2((lookInput.x - screenCenter.x) / screenCenter.y, (lookInput.y - screenCenter.y) / screenCenter.y);
+        mouseDistance = Vector2.ClampMagnitude(mouseDistance, 1f);
     }
 
-    public void Dive()
-    {
-        _player.transform.rotation = Quaternion.Slerp(_player.transform.rotation, Quaternion.Euler(XAngle, _player.transform.localEulerAngles.y, _player.transform.localEulerAngles.z), smooth * Time.deltaTime);
-    }
 
+    public void Fly()
+    {
+        _player.transform.Rotate(-mouseDistance.y * 90.0f * Time.deltaTime, mouseDistance.x * 90 * Time.deltaTime, 0, Space.Self);
+    }
 }
