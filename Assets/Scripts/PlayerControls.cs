@@ -15,6 +15,7 @@ public class PlayerControls : MonoBehaviour
     [SerializeField] public Transform GroundCheck;
     [SerializeField] private Transform _cameraTransform;
     [SerializeField] private bool _isGrounded = false;
+    [SerializeField] private float _distanceToGround = 5.0f;
     [SerializeField] public bool Fire { get; private set; }
     [SerializeField] public bool ChooseFire { get; private set; }
     public static event Action OnFire = delegate { };
@@ -31,7 +32,7 @@ public class PlayerControls : MonoBehaviour
  
     private void Update()
     {
-        _isGrounded = Physics.Linecast(transform.position,GroundCheck.position, GroundLayerMask);
+        _isGrounded = Physics.Linecast(transform.position,transform.position + Vector3.down * _distanceToGround, GroundLayerMask);
 
         animatable.Idle();
         float horizontalMovement = Input.GetAxisRaw("Horizontal");
@@ -82,7 +83,7 @@ public class PlayerControls : MonoBehaviour
     private void OnDrawGizmos()
     {
         Gizmos.color = Color.red;
-        Gizmos.DrawLine(transform.position, GroundCheck.position);
+        Gizmos.DrawLine(transform.position, transform.position + Vector3.down * _distanceToGround);
     }
 
 }

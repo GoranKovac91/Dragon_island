@@ -65,11 +65,12 @@
     <Compile Include="Assets\UnityAssets\PyroParticles\Prefab\Script\FireBaseScript.cs" />
     <Compile Include="Assets\UnityAssets\PyroParticles\Demo\DemoScriptEditor.cs" />
     <Compile Include="Assets\UnityAssets\PyroParticles\Prefab\Script\FireProjectileScript.cs" />
+    <Compile Include="Assets\Scripts\PlayerControls.cs" />
     <Compile Include="Assets\UnityAssets\PyroParticles\Prefab\Script\FireConstantBaseScript.cs" />
     <Compile Include="Assets\Scripts\Interfaces\IFlyable.cs" />
     <Compile Include="Assets\Scripts\FireSwitcher.cs" />
     <Compile Include="Assets\UnityAssets\PyroParticles\Prefab\Script\FireLightScript.cs" />
-    <Compile Include="Assets\Scripts\PlayerControls.cs" />
+    <Compile Include="Assets\Scripts\GenerateTerrain.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\UnityAssets\PyroParticles\Prefab\Materials\AdditiveTintable.shader" />
