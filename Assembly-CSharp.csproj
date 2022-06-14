@@ -53,28 +53,34 @@
     <UnityVersion>2020.3.24f1</UnityVersion>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="Assets\Scripts\Interfaces\IAnimatable.cs" />
     <Compile Include="Assets\UnityAssets\PyroParticles\Prefab\Script\MeteorSwarmScript.cs" />
-    <Compile Include="Assets\Scripts\CameraController.cs" />
     <Compile Include="Assets\Scripts\CreateFire.cs" />
-    <Compile Include="Assets\Scripts\Animatable.cs" />
     <Compile Include="Assets\Scripts\Flyable.cs" />
     <Compile Include="Assets\UnityAssets\PyroParticles\Prefab\Script\FireCollisionForwardScript.cs" />
-    <Compile Include="Assets\UnityAssets\PyroParticles\Prefab\Script\SingleLineAttribute.cs" />
-    <Compile Include="Assets\UnityAssets\PyroParticles\Demo\DemoScript.cs" />
+    <Compile Include="Assets\Scripts\GenerateTerrain.cs" />
     <Compile Include="Assets\UnityAssets\PyroParticles\Prefab\Script\FireBaseScript.cs" />
-    <Compile Include="Assets\UnityAssets\PyroParticles\Demo\DemoScriptEditor.cs" />
-    <Compile Include="Assets\UnityAssets\PyroParticles\Prefab\Script\FireProjectileScript.cs" />
     <Compile Include="Assets\Scripts\PlayerControls.cs" />
-    <Compile Include="Assets\UnityAssets\PyroParticles\Prefab\Script\FireConstantBaseScript.cs" />
     <Compile Include="Assets\Scripts\Interfaces\IFlyable.cs" />
     <Compile Include="Assets\Scripts\FireSwitcher.cs" />
     <Compile Include="Assets\UnityAssets\PyroParticles\Prefab\Script\FireLightScript.cs" />
-    <Compile Include="Assets\Scripts\GenerateTerrain.cs" />
+    <Compile Include="Assets\Scripts\Interfaces\IAnimatable.cs" />
+    <Compile Include="Assets\Scripts\CameraController.cs" />
+    <Compile Include="Assets\Scripts\Animatable.cs" />
+    <Compile Include="Assets\UnityAssets\PyroParticles\Prefab\Script\SingleLineAttribute.cs" />
+    <Compile Include="Assets\UnityAssets\PyroParticles\Demo\DemoScript.cs" />
+    <Compile Include="Assets\UnityAssets\PyroParticles\Demo\DemoScriptEditor.cs" />
+    <Compile Include="Assets\UnityAssets\PyroParticles\Prefab\Script\FireProjectileScript.cs" />
+    <Compile Include="Assets\UnityAssets\PyroParticles\Prefab\Script\FireConstantBaseScript.cs" />
+    <Compile Include="Assets\AQUAS-Lite\Scripts\AQUAS_Lite_Camera.cs" />
+    <Compile Include="Assets\AQUAS-Lite\Scripts\AQUAS_Lite_CamNav.cs" />
+    <Compile Include="Assets\AQUAS-Lite\Scripts\AQUAS_Lite_Reflection.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\UnityAssets\PyroParticles\Prefab\Materials\AdditiveTintable.shader" />
+    <None Include="Assets\AQUAS-Lite\Shaders\AQUAS-Lite_Frontface.shader" />
+    <None Include="Assets\AQUAS-Lite\Readme.txt" />
     <None Include="Assets\UnityAssets\PyroParticles\Readme.txt" />
+    <None Include="Assets\AQUAS-Lite\Shaders\AQUAS-Lite_Backface.shader" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="UnityEngine">
@@ -647,23 +653,14 @@
     <Reference Include="System.Xml.Serialization">
       <HintPath>C:\Program Files\Unity\Hub\Editor\2020.3.24f1\Editor\Data\NetStandard\compat\2.0.0\shims\netfx\System.Xml.Serialization.dll</HintPath>
     </Reference>
-    <Reference Include="Cinemachine">
-      <HintPath>Library\ScriptAssemblies\Cinemachine.dll</HintPath>
-    </Reference>
     <Reference Include="Unity.VSCode.Editor">
       <HintPath>Library\ScriptAssemblies\Unity.VSCode.Editor.dll</HintPath>
-    </Reference>
-    <Reference Include="com.unity.cinemachine.editor">
-      <HintPath>Library\ScriptAssemblies\com.unity.cinemachine.editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.TextMeshPro.Editor">
       <HintPath>Library\ScriptAssemblies\Unity.TextMeshPro.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.VisualStudio.Editor">
       <HintPath>Library\ScriptAssemblies\Unity.VisualStudio.Editor.dll</HintPath>
-    </Reference>
-    <Reference Include="Unity.Timeline.Editor">
-      <HintPath>Library\ScriptAssemblies\Unity.Timeline.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Timeline">
       <HintPath>Library\ScriptAssemblies\Unity.Timeline.dll</HintPath>
@@ -682,6 +679,15 @@
     </Reference>
     <Reference Include="UnityEngine.UI">
       <HintPath>Library\ScriptAssemblies\UnityEngine.UI.dll</HintPath>
+    </Reference>
+    <Reference Include="Cinemachine">
+      <HintPath>Library\ScriptAssemblies\Cinemachine.dll</HintPath>
+    </Reference>
+    <Reference Include="com.unity.cinemachine.editor">
+      <HintPath>Library\ScriptAssemblies\com.unity.cinemachine.editor.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.Timeline.Editor">
+      <HintPath>Library\ScriptAssemblies\Unity.Timeline.Editor.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>

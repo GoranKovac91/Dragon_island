@@ -4,57 +4,42 @@ using UnityEngine;
 
 public class GenerateTerrain : MonoBehaviour
 {
-    private Mesh _mesh;
-    [SerializeField] private Vector3[] _vertices;
-    [SerializeField] private int[] _triangles;
-    [SerializeField] private int _xSize = 500;
-    [SerializeField] private int _zSize = 500;
-    private void Awake()
+    [SerializeField] private int _width=256;
+    [SerializeField] private int _height=500;
+    [SerializeField] private int _depth=20;
+     public float _offsetX = 100f;
+     public float _offsetY = 100f;
+     public float scale = 20;
+    private void Start()
     {
-        _mesh = new Mesh();
-        GetComponent<MeshFilter>().mesh = _mesh;
-        CreateShape();
-        UpdateMesh();
+        Terrain terrain = GetComponent<Terrain>();
+        terrain.terrainData = GenerateTerrainScale(terrain.terrainData);
     }
-    public void CreateShape()
+  
+    TerrainData GenerateTerrainScale(TerrainData TerrainData)
     {
-        _vertices = new Vector3[(_xSize + 1) * (_zSize + 1)];
-        
-        for (int i = 0, z = 0; z <= _zSize; z++)
+        TerrainData.heightmapResolution = _width + 1;
+        TerrainData.size = new Vector3(_width, _depth, _height);
+        TerrainData.SetHeights(0, 0, GenerateHeights());
+        return TerrainData;
+    }
+    float[,] GenerateHeights()
+    {
+        float[,] heights = new float[_width, _height];
+        for (int x = 0; x <_width ; x++)
         {
-            for (int x = 0; x <= _xSize; x++)
+            for (int y = 0; y < _height; y++)
             {
-                float y = Mathf.PerlinNoise(x*.5f, z*.5f) * 2;
-                _vertices[i] = new Vector3(x, y, z);
-                i++;
+                heights[x, y] = CalculateHeight(x, y);
             }
         }
-        _triangles = new int[_xSize * _zSize * 6];
-        int vert = 0;
-        int tris = 0;
-        for (int z = 0; z < _zSize; z++)
-        {
-            for (int x = 0; x < _xSize; x++)
-            {
+        return heights;
+    }
+    float CalculateHeight(int x,int y)
+    {
+        float xCoord = (float) x / _width*scale  ;
+        float yCoord = (float) y / _height*scale  ;
+        return Mathf.PerlinNoise(xCoord, yCoord);
+    }
 
-                _triangles[tris + 0] = vert + 0;
-                _triangles[tris + 1] = vert + _xSize + 1;
-                _triangles[tris + 2] = vert + 1;
-                _triangles[tris + 3] = vert + 1;
-                _triangles[tris + 4] = vert + _xSize + 1;
-                _triangles[tris + 5] = vert + _xSize + 2;
-                vert++;
-                tris += 6;
-            }
-            vert++;
-        }
-       
-    }
-    public void UpdateMesh()
-    {
-        _mesh.Clear();
-        _mesh.vertices = _vertices;
-        _mesh.triangles = _triangles;
-        _mesh.RecalculateNormals();
-    }
 }
