@@ -7,20 +7,31 @@ public class GenerateTerrain : MonoBehaviour
     [SerializeField] private int _width=256;
     [SerializeField] private int _height=500;
     [SerializeField] private int _depth=20;
-     public float _offsetX = 100f;
-     public float _offsetY = 100f;
-     public float scale = 20;
+    public float _offsetX  ;
+    public float _offsetY  ;
+    public float scale = 20;
+    public int radius=10;
+    public Vector3 TerrainCenter;
+   
     private void Start()
     {
         Terrain terrain = GetComponent<Terrain>();
         terrain.terrainData = GenerateTerrainScale(terrain.terrainData);
+
     }
-  
+
+
     TerrainData GenerateTerrainScale(TerrainData TerrainData)
     {
         TerrainData.heightmapResolution = _width + 1;
         TerrainData.size = new Vector3(_width, _depth, _height);
-        TerrainData.SetHeights(0, 0, GenerateHeights());
+        TerrainCenter = TerrainData.bounds.center;
+        int X = (int)TerrainCenter.x;
+        int Z = (int)TerrainCenter.z;
+       
+        TerrainData.SetHeights(X,Z,GenerateHeights());
+      
+       
         return TerrainData;
     }
     float[,] GenerateHeights()
@@ -38,8 +49,18 @@ public class GenerateTerrain : MonoBehaviour
     float CalculateHeight(int x,int y)
     {
         float xCoord = (float) x / _width*scale  ;
-        float yCoord = (float) y / _height*scale  ;
+        float yCoord = (float) y / _height*scale;
+      
         return Mathf.PerlinNoise(xCoord, yCoord);
     }
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = Color.red;
+        Gizmos.DrawSphere(TerrainCenter, 20);
+        
+     
+    }
+  
+
 
 }
