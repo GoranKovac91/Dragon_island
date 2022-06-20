@@ -594,12 +594,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _width: 1200
   _height: 1000
-  _depth: 50
+  _depth: 30
   _offsetX: 100
   _offsetY: 100
-  scale: 12
+  scale: 40
   radius: 10
   TerrainCenter: {x: 0, y: 0, z: 0}
+  octaves: 12
+  lacunarity: 0.6
+  persistance: 0.2
 --- !u!154 &702659807
 TerrainCollider:
   m_ObjectHideFlags: 0
@@ -652,7 +655,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 702659805}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 10.7, z: 1}
+  m_LocalPosition: {x: 0, y: 15, z: 1}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -985,7 +988,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1482072005}
   m_LocalRotation: {x: -0.017847955, y: -0.12004182, z: -0.0021584607, w: 0.9926061}
-  m_LocalPosition: {x: 84.40812, y: 28.086325, z: 95.81249}
+  m_LocalPosition: {x: 84.47672, y: 25.477642, z: 100.99289}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -1148,7 +1151,7 @@ CharacterController:
   m_Height: 2.03
   m_Radius: 0.43
   m_SlopeLimit: 45
-  m_StepOffset: 0.3
+  m_StepOffset: 0.01
   m_SkinWidth: 0.08
   m_MinMoveDistance: 0.001
   m_Center: {x: 0.05, y: 1.81, z: 0}
@@ -1352,15 +1355,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 409426, guid: 20a769104331d8b48ac7d1ea0d49cdf3, type: 3}
       propertyPath: m_LocalScale.x
-      value: 0.5
+      value: 0.1
       objectReference: {fileID: 0}
     - target: {fileID: 409426, guid: 20a769104331d8b48ac7d1ea0d49cdf3, type: 3}
       propertyPath: m_LocalScale.y
-      value: 0.5
+      value: 0.1
       objectReference: {fileID: 0}
     - target: {fileID: 409426, guid: 20a769104331d8b48ac7d1ea0d49cdf3, type: 3}
       propertyPath: m_LocalScale.z
-      value: 0.5
+      value: 0.1
       objectReference: {fileID: 0}
     - target: {fileID: 409426, guid: 20a769104331d8b48ac7d1ea0d49cdf3, type: 3}
       propertyPath: m_LocalPosition.x
@@ -1469,7 +1472,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1922561393}
   m_LocalRotation: {x: -0.017847955, y: -0.12004182, z: -0.0021584607, w: 0.9926061}
-  m_LocalPosition: {x: 84.40812, y: 28.086325, z: 95.81249}
+  m_LocalPosition: {x: 84.47672, y: 25.477642, z: 100.99289}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1832580754}
