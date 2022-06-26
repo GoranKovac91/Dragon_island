@@ -55,6 +55,7 @@
   <ItemGroup>
     <Compile Include="Assets\Scripts\Interfaces\IAnimatable.cs" />
     <Compile Include="Assets\AQUAS-Lite\Scripts\AQUAS_Lite_Reflection.cs" />
+    <Compile Include="Assets\Scripts\GenerateTexture.cs" />
     <Compile Include="Assets\UnityAssets\PyroParticles\Prefab\Script\MeteorSwarmScript.cs" />
     <Compile Include="Assets\Scripts\CameraController.cs" />
     <Compile Include="Assets\AQUAS-Lite\Scripts\AQUAS_Lite_CamNav.cs" />
@@ -69,7 +70,6 @@
     <Compile Include="Assets\UnityAssets\PyroParticles\Prefab\Script\FireBaseScript.cs" />
     <Compile Include="Assets\UnityAssets\PyroParticles\Demo\DemoScriptEditor.cs" />
     <Compile Include="Assets\UnityAssets\PyroParticles\Prefab\Script\FireProjectileScript.cs" />
-    <Compile Include="Assets\Scripts\PerlinNoise.cs" />
     <Compile Include="Assets\Scripts\PlayerControls.cs" />
     <Compile Include="Assets\UnityAssets\PyroParticles\Prefab\Script\FireConstantBaseScript.cs" />
     <Compile Include="Assets\Scripts\Interfaces\IFlyable.cs" />
